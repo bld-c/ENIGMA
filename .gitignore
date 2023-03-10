@@ -1,0 +1,14 @@
+# Binary folder
+bin
+
+# Debugging files
+*.dSYM
+
+# Executable files
+*.app
+*.exe
+*.o
+*.out
+
+# Visual Studio configuration folder
+.vscode
