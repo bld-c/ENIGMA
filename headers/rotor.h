@@ -14,6 +14,7 @@ class Rotor
 {
     // Attributs
     protected:
+        string m_ID;
         array<int,26> m_wiring;
         int m_ringPosition;
         char m_rotorPosition;
@@ -21,30 +22,43 @@ class Rotor
 
     // Constructors
     public:
-        Rotor(const string rotorID= "I", const int ringPosition= 1, const char rotorPosition= 'A');
-    
+        Rotor(const string rotorID="I", const int ringPosition= 1, const char rotorPosition= 'A');
+    // Accessors
+    public:
+        void select(const string);
+        void setRing(const int);
+        void setPosition(const char);
+        string ID() const;
+        char position() const;
     // Methods
     public:
-        virtual int leftward(const int&) const;
+        int leftward(const int&) const;
         int rightward(const int&) const;
         char output(const int&) const;
         bool rotate();
-    // Accessors
-        char position() const;
 };
 
-class Reflector : private Rotor
+class Reflector
 //
 // Define reflectors of Enigma machine
 //
 {
+    // Attributes
+    protected:
+        string m_ID;
+        array<int,26> m_wiring;
     //Constructors
     public:
-    Reflector (const char);
+        Reflector(const string reflectorID= "A");
+
+    // Accessors
+    public:
+        void select(const string);
+        string ID() const;
 
     // Methods
     public:
-        virtual int leftward(const int&) const;
+        int leftward(const int&) const;
 };
 
 class EntryWheel

@@ -5,7 +5,7 @@ int main()
 {
     Rotor rotor1("I",1,'A'), rotor2("II",1,'A'), rotor3("III",1,'A');
     EntryWheel ETW;
-    Reflector UKW('A');
+    Reflector UKW("A");
 
     char letter= 'A';
 
