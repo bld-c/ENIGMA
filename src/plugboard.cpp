@@ -5,7 +5,7 @@ Plugboard::Plugboard()
 // PLUGBOARD CLASS CONSTRUCTOR
 //
 {
-    array<char,26> temp1= {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','V','W','X','Y','Z'};
+    array<char,26> temp1= {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
     m_plugboard= temp1;
     array<char,26> temp2= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     m_plugcables= temp2;

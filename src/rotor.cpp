@@ -123,10 +123,14 @@ int Rotor::leftward(const int &index) const
 // * indexOut is an integer in [1,26]  giving the output powered contact number in the entrywheel basis.
 //
 {
-    // Get contact number in the rotor basis
-    int indexOut= m_wiring[(index - 1 + m_ringPosition + m_rotorPosition - 'A')%26];
+    // Calculate input index in rotor basis
+    int indexIn= (index - 1 - m_ringPosition + (m_rotorPosition - 'A'))%26;
+    // Avoid negative values
+    if (indexIn<0) indexIn+= 26;
+    // Get output index in the rotor basis
+    int indexOut= m_wiring[indexIn];
     // Convert the result in the global basis
-    indexOut= (indexOut - m_ringPosition - (m_rotorPosition - 'A') - 1)%26 + 1;
+    indexOut= (indexOut - 1 + m_ringPosition - (m_rotorPosition - 'A'))%26 + 1;
     // Avoid negative values
     if (indexOut < 1) indexOut+= 26;
     return indexOut;
@@ -142,8 +146,10 @@ int Rotor::rightward(const int &index) const
 // * indexOut is an integer in [1,26] giving the output powered contact number in the entrywheel basis.
 //
 {
-    // Prevent invalid values
-    int indexIn = (index -1)% 26 + 1;
+    // Convert index in rotor basis
+    int indexIn= (index - 1 - m_ringPosition + (m_rotorPosition - 'A'))%26 + 1;
+    // Avoid negative values
+    if (indexIn < 1) indexIn += 26;
     // Find output index in the rotor basis.
     int indexOut= 0;
     for ( ; indexOut<26 ; indexOut++)
@@ -155,7 +161,7 @@ int Rotor::rightward(const int &index) const
         }
     }
     // Convert the result in the global basis
-    indexOut= (indexOut - m_ringPosition - (m_rotorPosition - 'A') - 1)%26 + 1;
+    indexOut= (indexOut - 1 + m_ringPosition - (m_rotorPosition - 'A'))%26 + 1;
     // Avoid negative values
     if (indexOut < 1) indexOut+= 26;
     return indexOut;
