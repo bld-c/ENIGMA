@@ -27,7 +27,7 @@ class Rotor
     public:
         void select(const string);
         void setRing(const int);
-        void setPosition(const char);
+        bool setPosition(const char);
         string ID() const;
         char position() const;
     // Methods

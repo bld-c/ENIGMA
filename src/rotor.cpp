@@ -83,18 +83,22 @@ void Rotor::setRing(const int ringPosition)
     m_ringPosition= ringPosition - 1;
 }
 
-void Rotor::setPosition(const char rotorPosition)
+bool Rotor::setPosition(const char rotorPosition)
 //
 // SET POSITION SETTER
 // Set the rotor position
 // INPUT
 // * rotorPosition is an character that should be in [65 ; 90] corresponding to the uppercase alphabet A - Z.
+// OUTPUT
+// * setPosition is a boolean returning true if the turnover character is set.
 //
 {
     // Ensure a valid input
     assert(((void)"rotorPosition should be between A and Z",(rotorPosition>64 && rotorPosition<91)));
     // Set rotor position
     m_rotorPosition= rotorPosition;
+    // Return rotation flag
+    return m_rotorPosition==m_turnover;
 }
 
 string Rotor::ID() const
@@ -185,12 +189,11 @@ bool Rotor::rotate()
 // ROTATE METHOD
 // Realizing a one step rotation
 // OUTPUT
-// * turnOver is a boolean returning true if turnover character is engaged before rotation
+// * rotate is a boolean returning true if turnover character is engaged before rotation
 //
 {
-    bool turnOver= m_rotorPosition==m_turnover;
     m_rotorPosition = 'A' + (m_rotorPosition - 'A' + 1)%26;
-    return turnOver;
+    return m_rotorPosition==m_turnover;
 }
 
 Reflector::Reflector(const string reflectorID)
